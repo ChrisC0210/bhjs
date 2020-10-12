@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="./dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./dist/css/general.css">
+    <link rel="stylesheet" href="./dist/css/all.min.css">
+</head>
+<style>
+    .bhjs-bg {
+        background-image: url("./assets/images/school background.jpg");
+        padding: 20px 0 20px 0;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <a href="#"><img src="./assets/images/logo-header.png" class="img-responsive" alt=""></a>
+            </div>
+        </div>
+    </div>
+    <div class="container bhjs-bg" id="language-change">
+        <div class="row btn-language">
+            <div class="col-sm-10 ml-4 mt-2 mb-2">
+                <!-- <span class="btn" href="#english" data-parent="#language-change" data-toggle="collapse">English</span>
+                <span class="btn" href="#chinese" data-parent="#language-change" data-toggle="collapse">Chinese</span> -->
+                <!-- <button id="L0" class="btn" data-toggle="collapse">English</button>&nbsp; -->
+                <button id="L1" class="ml-4 btn btn-primary" data-toggle="collapse">Change Language</button> &nbsp;
+
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-sm-12 ">
+                <div class="panel panel-default ">
+                    <div class="panel-heading ">Thank you</div>
+                    <div class="panel-body ">
+
+                        <div class="row ">
+                            <div class="col-sm-offset-1 col-sm-10 ">
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-body" style="text-align:justify;">
+                        <!-- english -->
+                        <div id="engText" class="show collapse card-body bg-light" data-toggle="collapse" data-parent="#accordion">
+                            <h3 class="text-center"><b>2020 School Information Day</b></h3>
+                            <h4>12th December 2020</h4>
+                            <div class="mt-2 mb-4">
+                                Our School Information Day will be held on 12th December 2020 (Saturday). We will conduct two briefing sessions about our school for senior primary students and their parents. Each briefing session will include a general introduction of the school, our
+                                curriculum, activities for students as well as admission criteria. Visitors are also welcomed to tour the school during school opening hours.
+                            </div>
+                            <h4>Briefing Sessions</h4>
+                            <h5 class="mt-2 mb-4">1st Session: 2:00 p.m. – 3:15 p.m.</h5>
+                            <h5 class="mt-2 mb-4">2nd Session: 4:00 p.m. – 5:15 p.m.</h5>
+                            <div class="mt-2 mb-4">(Contents of the two sessions are identical.)</div>
+                            <div class="mt-2 mb-4">For details, please contact us at 2336 3034.</div>
+                            <!-- <hr> -->
+                        </div>
+                        <!-- english -->
+
+                        <!-- chinese -->
+                        <div id="znText" class="collapse card-body bg-light" data-toggle="collapse" data-parent="#accordion">
+                            <h3 class="text-center"><b>2020年學校資訊日</b></h3>
+                            <h4>2020年12月12日</h4>
+                            <div class="mt-2 mb-4">
+                                本校將於2020年12月12日(星期六)舉行學校資訊日。屆時我們將為小學高年級的學生及其家長舉辦兩場簡介會，讓來賓對本校的課程、學生活動及收生標準有更深入的認識。本校亦會開放校園設施供來賓參觀。
+                            </div>
+                            <h4>簡介會</h4>
+                            <h5 class="mt-2 mb-4">第一節：下午二時至三時十五分</h5>
+                            <h5 class="mt-2 mb-4">第二節：下午四時至五時十五分</h5>
+                            <div class="mt-2 mb-4">(兩節簡介會內容相同)</div>
+                            <div class="mt-2 mb-4">如有查詢，請致電2336 3034與本校聯絡。</div>
+                        </div>
+                        <!-- chinese -->
+
+                        <!-- btn -->
+                        <div class="row text-center ">
+                            <button type="button " class="btn btn-default " style="margin-top: 20px; " onclick="window.location='form.php' ">Next</button>
+                        </div>
+
+                    </div>
+                    <div class="ml-4" style="padding-bottom: 50px">Terms & Conditions:<br /></div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- <script src="js/jquery-1.11.0.min.js "></script> -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- <script src="js/bootstrap.min.js "></script> -->
+    <script type="text/javascript " src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js "></script>
+    <script type="text/javascript " src="./dist/js/popper.min.js "></script>
+    <script type="text/javascript " src="./dist/js/bootstrap.min.js "></script>
+    <script>
+        //in browsers which don't support classList:
+        function hasClass(el, className) {
+            if (el.classList)
+                return el.classList.contains(className);
+            return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
+        }
+
+        function addClass(el, className) {
+            if (el.classList)
+                el.classList.add(className)
+            else if (!hasClass(el, className))
+                el.className += " " + className;
+        }
+
+        function removeClass(el, className) {
+            if (el.classList)
+                el.classList.remove(className)
+            else if (hasClass(el, className)) {
+                var reg = new RegExp('(\\s|^)' + className + '(\\s|$)');
+                el.className = el.className.replace(reg, ' ');
+            }
+        }
+        //
+        var languageClickL0 = document.getElementById('L0');
+        var languageClickL1 = document.getElementById('L1');
+
+        languageClickL1.onclick = function() {
+            var znText = document.getElementById('znText');
+            if (znText.style.display !== 'block') {
+                document.getElementById("engText").style.display = "none";
+                document.getElementById("znText").style.display = "block";
+                // $("#engText").removeClass("show");
+                document.getElementById("engText").classList.remove("show");
+            } else {
+                znText.style.display = 'none';
+                document.getElementById("engText").style.display = "block";
+                document.getElementById("znText").style.display = "none";
+            }
+        };
+    </script>
+</body>
+
+</html>

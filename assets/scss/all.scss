@@ -1,0 +1,26 @@
+//plugin
+@import "../scss/plugin/boostrap";
+// @import "../scss/plugin/slick";
+// @import "../scss/plugin/slick-theme";
+
+//HKS Style
+// @import "../scss/hksStyle/hksColor";
+// @import "../scss/hksStyle/hksFonts";
+// @import "../scss/hksStyle/hksBanner";
+// @import "../scss/hksStyle/hksBtn";
+// @import "../scss/hksStyle/hksCard";
+// @import "../scss/hksStyle/hksImg";
+// @import "../scss/hksStyle/velaSlick";
+//element
+//@import "../scss/elment/parallax";
+.breadcrumb{
+  background-color: #fefefe;
+  //background-color: red;
+  padding: .75rem 0rem;
+  a{
+    color: #333;
+  }
+}
+.bhjs-bg{
+  background-image: url("./assets/images/school background.jpg");
+}

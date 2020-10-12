@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="./dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./dist/css/general.css">
+    <link rel="stylesheet" href="./dist/css/all.min.css">
+</head>
+<style>
+    .bhjs-bg {
+        background-image: url("./assets/images/school background.jpg");
+        padding: 20px 0 20px 0;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <a href="#"><img src="./assets/images/logo-header.png" class="img-responsive" alt=""></a>
+            </div>
+        </div>
+        <div class="container bhjs-bg" id="language-change">
+            <div class="row btn-language">
+                <div class="col-sm-10 ml-4 mt-2 mb-2">
+                    <!-- <span class="btn" href="#english" data-parent="#language-change" data-toggle="collapse">English</span>
+                <span class="btn" href="#chinese" data-parent="#language-change" data-toggle="collapse">Chinese</span> -->
+                    <!-- <button id="L0" class="btn" data-toggle="collapse">English</button>&nbsp; -->
+                    <button id="L1" class="ml-4 btn btn-primary" data-toggle="collapse" style="margin-left: 34px;margin-bottom: 20px;">Change Language</button> &nbsp;
+
+                </div>
+            </div>
+            <div class="show row " id="engText">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <h3 class="text-center"><b id="schoolInfo">School Information Day 2020 Registration</b></h3>
+                        <div class="panel-body">
+                            <form class="form-horizontal" action="act.php" role="form" name="form1" onSubmit="return checkform();" method="post">
+                                <div class="row">
+                                    <div class="col-sm-4" id="studentName">
+                                        NAME OF STUDENT<br> (Chinese or English characters only)
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" name="student_name" id="student_name" placeholder="Name of Student" value="<?=$data['student_name']?>">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        NAME OF PARENT
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <select name="parent_title" id="parent_title" class="form-control">
+												<? foreach($parent_title_list as $key=>$val){?>
+												<option value="<?=$key?>" <?=$data['parent_title']==$key?'selected="selected"':''?>><?=$val?></option>
+												<? }?>
+											 </select>
+
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="parent_name" id="parent_name" placeholder="Name of Parent" value="<?=$data['parent_name']?>">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        EMAIL OF PARENT
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="email" class="form-control" name="parent_email" id="parent_email" placeholder="Contact Email" value="<?=$data['parent_email']?>">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        CONFIRM EMAIL OF PARENT
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="email" class="form-control" name="confirm_email" id="confirm_email" placeholder="Confirm Contact Email" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top:5px;">
+                                    <div class="col-sm-4">
+                                        SESSION ATTENDING
+                                    </div>
+                                    <div class="col-sm-8">
+
+
+                                        <div class="row">
+                                            <div class="col-sm-1">
+                                                <input type="radio" style="margin-right:5px" name="timeslot_id" value="1" <?=$data[ 'timeslot_id']==1? 'checked="checked"': ''?>></div>
+                                            12<sup>th</sup> December 2020 (Saturday) 2:00 p.m. – 3:15 p.m.
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-1">
+                                                <input type="radio" style="margin-right:5px" name="timeslot_id" value="2" <?=$data[ 'timeslot_id']==2? 'checked="checked"': ''?>>
+
+                                            </div>
+                                            12<sup>th</sup> December 2020 (Saturday) 4:00 p.m. – 5:15 p.m.
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        NO. OF SEATS RESERVED
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <select name="no_of_seats" id="no_of_seats" class="form-control">
+												<? for($i=1;$i<5;$i++){?>
+												<option value="<?=$i?>" <?=$data['no_of_seats']==$i?'selected="selected"':''?>><?=$i?></option>
+												<? }?>
+											 </select>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-top:5px;">
+                                    <div class="col-sm-4">
+                                        PRIMARY SCHOOL ATTENDING
+                                    </div>
+                                    <div class="col-sm-8">
+
+
+                                        <div class="row">
+                                            <div class="col-sm-1">
+                                                <input type="radio" style="margin-right:5px" name="student_p_school_choice" value="Neighbours" <?=$data[ 'student_p_school_choice']=='Neighbours' ? 'checked="checked"': ''?>">
+
+                                            </div>
+                                            <div class="col-sm-3">Neighbours</div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-1">
+                                                <input type="radio" style="margin-right:5px" name="student_p_school_choice" value="Other" <?=$data[ 'student_p_school_choice']=='Other' ? 'checked="checked"': ''?>>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                Other
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" name="other_text" id="other_text" placeholder="Other" value="<?=$data['other_text']?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        CONTACT NUMBER
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" name="contact_no" id="contact_no" placeholder="Contact Number" value="<?=$data['contact_no']?>">
+                                    </div>
+                                </div>
+
+
+                                <? /*
+									<hr>
+									<div class="row">
+										<div class="col-sm-12">
+										<p style="padding:0">
+										<input type="checkbox" id="accept_it"> <u>Please tick to accept the followings</u></p>
+										<div style="overflow:auto;height: 80px; width:100%; border: 1px solid #EEE;padding:3px;"><p style="padding:0">
+									Our media partner, South China Morning Post Publishers Limited intends to collect and use your name, company name, business title in the company, industry, mobile phone number, office number and email address (collectively “Your Personal Data”) for direct marketing but we will not do so unless we have received your consent. Please tick the box to indicate your consent to the collection and use of Your Personal Data for direct marketing of our services, facilities and/or goods including: Recruitment related services; Career development services; Event management related services. For more information on how we handle Your Personal Data and your right of access to and correction of Your Personal Data held by us, please refer to our Personal Information Collection Statement in full at <a href="http://www.scmp.com/privacy-policy" target="_blank">http://www.scmp.com/privacy-policy</a>.</p>
+									</div>
+									
+									</div>
+									</div>*/?>
+                                    <div class="row text-center">
+                                        <button type="button" class="btn btn-default" style="margin-top: 20px;" onClick="window.location='index.php';">Back</button>
+                                        <button type="submit" class="btn btn-default" style="margin-top: 20px;">Preview</button>
+                                    </div>
+
+                        </div>
+                        <input type="hidden" name="processType" value="add">
+                        <input type="hidden" name="type" value="ref">
+
+                        </form>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <p style="padding-bottom: 50px">
+                                    Please ensure the information above is correct before submission. Duplicate registration will not be accepted. A confirmation message will be sent to you via SMS after the completion of registration. Please show the confirmation upon entry to the School
+                                    Hall. Thank you.
+                                    <br/>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <!-- <script src="js/jquery-1.11.0.min.js "></script> -->
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <!-- <script src="js/bootstrap.min.js "></script> -->
+        <script type="text/javascript " src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js "></script>
+        <script type="text/javascript " src="./dist/js/popper.min.js "></script>
+        <script type="text/javascript " src="./dist/js/bootstrap.min.js "></script>
+        <script>
+            var languageClickL0 = document.getElementById('L0');
+            var languageClickL1 = document.getElementById('L1');
+
+            languageClickL1.onclick = function ChangeText() {
+
+                document.getElementById('schoolInfo').innerHTML = '請填寫登記資料';
+                document.getElementById('studentName').innerHTML = '學生姓名(請輸入中文或英文字元)';
+                var znText = document.getElementById('engText');
+                if (znText.style.display !== 'block') {
+                    document.getElementById("engText").style.display = "none";
+                    document.getElementById("znText").style.display = "block";
+                    // document.getElementById("engText").classList.remove("show");
+                    document.getElementById('schoolInfo').textContent = 'School Information Day 2020 Registration';
+
+                } else {
+                    znText.style.display = 'none';
+                    document.getElementById("engText").style.display = "block";
+                    document.getElementById("znText").style.display = "none";
+
+                    document.getElementById('schoolInfo').textContent = '請填寫登記資料';
+                    document.getElementById('studentName').textContent = '學生姓名' + < br > +'(請輸入中文或英文字元)';
+
+
+
+                }
+            };
+        </script>
+</body>
+
+</html>
