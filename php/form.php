@@ -437,7 +437,7 @@ Venue:  Regal Hongkong Hotel
 					<div class="row">
 					<div class="col-sm-12">
 						<p style="padding-bottom: 50px" id="textPlease2">
-						Please ensure the information above is correct before submission. Duplicate registration will not be accepted. A confirmation message will be sent to you via SMS after the completion of registration. Please show the confirmation upon entry to the School Hall. Thank you.
+						<?php echo $textPlease2 ?>
 						<br/>
 					</p>
 				</div>
