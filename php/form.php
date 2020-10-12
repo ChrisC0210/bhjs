@@ -96,7 +96,7 @@ if(isset($_GET["language"])){
   $_SESSION["language"] = getDefalutlanguage();
 }
 $language_name = getLanguageName($_SESSION["language"]);
-include "lang/".$language_name.".inc";
+include "include/lang/".$language_name.".inc";
 ?>
 <SELECT NAME="language" id="language" onchange="changeLanguage(this)">
 <?php
@@ -115,332 +115,11 @@ include "lang/".$language_name.".inc";
 </SELECT>
 <?php
   if($_GET["language"] == $value){
-      //$selected = "selected = 'selected' ";
-    }
-echo "语言：".$_SESSION["language"];
-echo "测试：".$name;
-?>
-<!-- index.php -->
-<? 
-	session_start();
-	include "include/config.php";
-	include "include/system_message.php";
-
-	$msg = "";
-	$err_msg = "";
-	if(isset($_REQUEST['msg'])){
-		$msg = $_REQUEST['msg'];
-		$err_msg = $SYSTEM_MESSAGE[$msg];
-	}
-	if(!is_array($_SESSION['sess_delegate'])){
-		$_SESSION['sess_delegate'] = array();
-	}
-	$ref = htmlspecialchars($_REQUEST['ref']);
-	$p = htmlspecialchars($_REQUEST['p']);
-	$d = htmlspecialchars($_REQUEST['d']);
-
-
-	$is_free = false;
-	
-	foreach($_SESSION['sess_delegate'] as $value){
-	
-		if($value['reason']=='From Lumesse'){
-		
-			$is_free = true;
-			break;
-		}
-
-	}
-?>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?=PAGE_TITLE?></title>
-
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/general.css" rel="stylesheet">
-	
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-	<script src="js/jquery-1.11.0.min.js"></script>
-	<script src="js/common.js"></script>
-	<script>
-		function checkSubmit(){
-			<?
-			if(count($_SESSION['sess_delegate'])==0){?>
-				alert("Please Add the delegate");
-				return false;
-			<? }else{?>
-				if(confirm("Do you confirm this registration?")){
-					return true;
-				}else{
-					return false;
-				}
-			<?
-			}?>
-			
-		}
-		function remove_it(k){
-			if(confirm('Remove this?')){
-				window.location = "act.php?type=ref&processType=remove&key="+k;
-			}
-		}
-		function checkform(){
-			var flag=true;
-			var errMessage="";
-			var frm = document.form1;
-			
-			trimForm(frm);
-
-<? /*
-			if(!$("#accept_it").prop("checked")){
-				alert("Please accept the Personal Information Collection Statement");
-				return false;
-			}*/?>
-			if($("input[name^=salutation]:checked").size() == 0){
-				flag = false;
-				errMessage += "Salutation\n";
-			}
-			if(frm.first_name.value==''){
-				flag = false;
-				errMessage += "First Name\n";
-			}
-			if(frm.last_name.value==''){
-				flag = false;
-				errMessage += "Last Name\n";
-			}
-			if(frm.company.value==''){
-				flag = false;
-				errMessage += "Company\n";
-			}
-			if(frm.job_title.value==''){
-				flag = false;
-				errMessage += "Job Title\n";
-			}
-			if(frm.email.value==''){
-				flag = false;
-				errMessage += "Email\n";
-			}
-			if(frm.contact_no.value==''){
-				flag = false;
-				errMessage += "Contact No.\n";
-			}
-			
-			if($("input[name^=timeslot_id]:checked").size() == 0){
-				flag = false;
-				errMessage += "Please select session\n";
-			}
-			if($("input[name^=reason]:checked").val()=='Others'){
-				if(frm.other_text.value==''){
-					flag = false;
-					errMessage += "Others' Reason\n";
-				}
-			}
-			if(flag == false){
-				errMessage = "Please fill in the following information:\n" + errMessage;
-				alert(errMessage);
-		
-			}
-			return flag;
-				
-		}
-	</script>
-	<style>
-    .bhjs-bg {
-        background-image: url("/images/school background.jpg");
-        padding: 20px 0 20px 0;
-    }
-	</style>
-  </head>
-  <body>
-		<div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-							<a href="index.php"><img src="images/logo-header.png" class="img-responsive" alt=""></a>
-            </div>
-        </div>
-		</div>
-<?php
-include "function.php";
-?>
-<script src="js/language.js"></script>
-<?php
-if(isset($_GET["language"])){
-  $_SESSION["language"] = $_GET["language"];
-}else{
-  $_SESSION["language"] = getDefalutlanguage();
-}
-$language_name = getLanguageName($_SESSION["language"]);
-include "lang/".$language_name.".inc";
-?>
-<SELECT NAME="language" id="language" onchange="changeLanguage(this)">
-<?php
-  $language_array = array_language();
-  foreach($language_array as $key => $value){
-    if($_SESSION["language"] == $value){
       $selected = "selected = 'selected' ";
-    }else{
-      $selected = "";
     }
+echo "Language：".$_SESSION["language"];
+//echo "测试：".$name;
 ?>
-<OPTION VALUE="<?php echo $value;?>" <?php echo $selected;?>><?php echo getLanguageName($value);?></OPTION>;
-<?
-  }
-?>
-</SELECT>
-<?php
-  if($_GET["language"] == $value){
-      //$selected = "selected = 'selected' ";
-    }
-echo "语言：".$_SESSION["language"];
-echo "测试：".$name;
-?>
-	<div class="container bhjs-bg" id="language-change">
-    
-  <!-- <div class="row btn-language">
-    <div class="col-sm-10 ml-4 mt-2 mb-2">
-      <button id="L1" class="ml-4 btn btn-primary" data-toggle="collapse" style="margin-left: 34px;margin-bottom: 20px;" >Change Language</button>
-    </div>
-  </div> -->
-		
-		<? /*
-		<div class="row">
-			<p class="blue" style="padding-bottom: 20px;">
-				Date: Dec 4, 2014 (Thursday) <br/>
-Time: 8:45am to 12:30pm approx. (Registration Starts 8:30am)<br/>
-Venue:  Regal Hongkong Hotel
-			</p>
-		</div>
-		*/?>
-		<?
-
-		if($ref!=''){?>
-		<div class="row">
-			<div class="col-sm-12">
-				<div class="panel panel-default">
-					<div class="panel-heading"><?=nl2br( ' '.$thankU .' ' )?></div>
-					<div class="panel-body">
-						
-					
-						<div class="row" id="engText">
-							<div class="show col-sm-offset-1 col-sm-10">
-							<?=nl2br(
-								'
-								Reference No.:'.$ref.'
-								Your registration is successful. Thank you!
-								Please record the reference number.
-								A confirmation email was sent to you.
-								Please show the confirmation upon entry to the School Hall.
-								School Information Day
-								')?>
-							</div>
-						</div>
-						<!-- 123 -->
-												<div class="row" id="znText">
-							<div class="col-sm-offset-1 col-sm-10">
-							<?=nl2br(
-								'
-								
-								參考編號：'.$ref.'
-								閣下已成功登記第___節學校資訊日簡介會，並留座 '.$no_of_seats.' 位。
-								屆時請出示本信息以便安排入座。
-								何明華會督銀禧中學謹啟
-								')?>
-							</div>
-						</div>
-						<!-- 123 -->
-					</div>
-				</div>
-			</div>
-		
-		</div>
-		
-		<? }
-		
-		else{
-      
-      ?>
-      <!-- 222 -->
-      <?php
-  if($_GET["language"] == $value){
-      //$selected = "selected = 'selected' ";
-    }
-echo "语言：".$_SESSION["language"];
-echo "测试：".$name;
-?>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="panel panel-default">
-                    <div class="panel-body" style="text-align:justify;">
-                        <!-- english -->
-                        <div id="engText" class="show collapse card-body bg-light" data-toggle="collapse" data-parent="#accordion">
-                            <h3 class="text-center"><b><?=nl2br( ' '.$ind01.' ' )?></b></h3>
-                            <h4><?=nl2br( ' '.$ind02.' ' )?></h4>
-                            <div class="mt-2 mb-4">
-                              <?=nl2br( ' '.$ind03.' ' )?>
-                            </div>
-                            <h4><?=nl2br( ' '.$ind04.' ' )?></h4>
-                            <h5 class="mt-2 mb-4"><?=nl2br( ' '.$ind05.' ' )?></h5>
-                            <h5 class="mt-2 mb-4"><?=nl2br( ' '.$ind06.' ' )?></h5>
-                            <div class="mt-2 mb-4">(<?=nl2br( ' '.$ind07.' ' )?></div>
-                            <div class="mt-2 mb-4"><?=nl2br( ' '.$ind08.' ' )?></div>
-                            <!-- <hr> -->
-                        </div>
-                        <!-- english -->
-
-                        <!-- btn -->
-                        <div class="row text-center ">
-                            <button type="button " class="btn btn-default " style="margin-top: 20px; " onclick="window.location='form.php' "><?php echo $btnNext ?></button>
-                        </div>
-
-                    </div>
-                    <div class="ml-4" style="padding-bottom: 50px;padding-left: 24px; "><?php echo $tAndC ?><br /></div>
-
-                </div>
-
-            </div>
-        </div>
-      <!-- 123 -->
-		<?
-		}?>
-		
-	
-		<hr noshade="noshade" style="border:20px solid #fedfb0; display:none;">
-	</div>
-	
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery-1.11.0.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-		<script src="js/bootstrap.min.js"></script>
-    <script>
-        var languageClickL0 = document.getElementById('L0');
-        var languageClickL1 = document.getElementById('L1');
-
-        languageClickL1.onclick = function() {
-            var znText = document.getElementById('znText');
-            if (znText.style.display !== 'block') {
-                document.getElementById("engText").style.display = "none";
-                document.getElementById("znText").style.display = "block";
-                document.getElementById("engText").classList.remove("show");
-            } else {
-                znText.style.display = 'none';
-                document.getElementById("engText").style.display = "block";
-                document.getElementById("znText").style.display = "none";
-            }
-        };
-    </script>
-  </body>
-</html>
-<!-- form.php -->
 <? 
 	session_start();
 	include "include/config.php";
@@ -635,23 +314,23 @@ Venue:  Regal Hongkong Hotel
 			<div id="engText" class="show collapse">
 			<div class="col-sm-12">
 				<div class="panel panel-default">
-					<h3 class="text-center"><b id="schoolInfo">School Information Day 2020 Registration</b></h3>
+					<h3 class="text-center"><b id="schoolInfo"><?php echo $form01 ?></b></h3>
 					<div class="panel-body" >
 					<!-- eee -->
 						<form class="form-horizontal" action="act.php" role="form" name="form1" onSubmit="return checkform();" method="post">
-							<h4 class="margin-bottom:20px;" id="textPlease">Please enter the following information for registration</h4>
+							<h4 class="margin-bottom:20px;" id="textPlease"><?php echo $form02 ?></h4>
 									<div class="row">
 										<div class="col-sm-4">
-										<span  id="studentName">NAME OF STUDENT</span>
+										<span  id="studentName"><?php echo $form03 ?></span>
 										<br>
-											<span id="studentName2">(Chinese or English characters only)</span>
+											<span id="studentName2"><?php echo $form04 ?></span>
 										</div>
 										<div class="col-sm-6">
 											 <input type="text" class="form-control" name="student_name" id="student_name" placeholder="Name of Student" value="<?=$data['student_name']?>">
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-sm-4" id="parentName">NAME OF PARENT</div>
+										<div class="col-sm-4" id="parentName"><?php echo $form05 ?></div>
 										<div class="col-sm-2">
 											<select name="parent_title" id="parent_title" class="form-control">
 												<? foreach($parent_title_list as $key=>$val){?>
@@ -666,20 +345,20 @@ Venue:  Regal Hongkong Hotel
 									</div>
 									<div class="row">
 										<div class="col-sm-4" id="contactEmail">
-											EMAIL OF PARENT
+											<?php echo $form06 ?>
 										</div>
 										<div class="col-sm-6">
 											 <input type="email" class="form-control" name="parent_email" id="parent_email" placeholder="Contact Email" value="<?=$data['parent_email']?>">
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-sm-4" id="contactEmailCon">CONFIRM EMAIL OF PARENT</div>
+										<div class="col-sm-4" id="contactEmailCon"><?php echo $form07 ?></div>
 										<div class="col-sm-6">
 											 <input type="email" class="form-control" name="confirm_email" id="confirm_email" placeholder="Confirm Contact Email" autocomplete="off" >
 										</div>
 									</div>									
 									<div class="row" style="padding-top:5px;">
-										<div class="col-sm-4" id="sessionAttending">SESSION ATTENDING</div>
+										<div class="col-sm-4" id="sessionAttending"><?php echo $form08 ?></div>
 										<div class="col-sm-8">
 											<div class="row">
 												<div class="col-sm-1">
@@ -700,7 +379,7 @@ Venue:  Regal Hongkong Hotel
 								
 									<div class="row">
 										<div class="col-sm-4" id="noSeats">
-											NO. OF SEATS RESERVED
+											<?php echo $form09 ?>
 										</div>
 										<div class="col-sm-2">
 											 <select name="no_of_seats" id="no_of_seats" class="form-control">
@@ -712,7 +391,7 @@ Venue:  Regal Hongkong Hotel
 									</div>
 									<div class="row" style="padding-top:5px;">
 										<div class="col-sm-4" id="primarySchool">
-											PRIMARY SCHOOL ATTENDING
+											<?php echo $form10 ?>
 										</div>
 										<div class="col-sm-8">
 											
@@ -721,14 +400,14 @@ Venue:  Regal Hongkong Hotel
 												<div class="col-sm-1">
 													<input type="radio" style="margin-right:5px" name="student_p_school_choice" value="Neighbours" <?=$data['student_p_school_choice']=='Neighbours'?'checked="checked"':''?>">
 												</div> 
-												<div class="col-sm-3" id="neighbour">Neighbours</div>
+												<div class="col-sm-3" id="neighbour"><?php echo $form11 ?></div>
 											</div>
 											
 											<div class="row">
 												<div class="col-sm-1">
 													<input type="radio" style="margin-right:5px" name="student_p_school_choice" value="Other" <?=$data['student_p_school_choice']=='Other'?'checked="checked"':''?>>
 												</div>
-												<div class="col-sm-2" id="other">Other</div>
+												<div class="col-sm-2" id="other"><?php echo $form12 ?></div>
 												<div class="col-sm-6">
 													<input type="text" class="form-control" name="other_text" id="other_text" placeholder="Other" value="<?=$data['other_text']?>">
 												</div>
@@ -736,14 +415,14 @@ Venue:  Regal Hongkong Hotel
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-sm-4" id="contactNumber">CONTACT NUMBER</div>
+										<div class="col-sm-4" id="contactNumber"><?php echo $form13 ?></div>
 										<div class="col-sm-6">
 											 <input type="text" class="form-control" name="contact_no" id="contact_no" placeholder="Contact Number" value="<?=$data['contact_no']?>">
 										</div>
 									</div>									
 									<div class="row text-center">
-										<button type="button" class="btn btn-default" style="margin-top: 20px;" onClick="window.location='index.php';" id="btn-back">Back</button>
-										<button type="submit" class="btn btn-default" style="margin-top: 20px;" id="btnPreview">Preview</button>
+										<button type="button" class="btn btn-default" style="margin-top: 20px;" onClick="window.location='index.php';" id="btn-back"><?php echo $btnBack ?></button>
+										<button type="submit" class="btn btn-default" style="margin-top: 20px;" id="btnPreview"><?php echo $btnPreview ?></button>
 									</div>
 	
 									
