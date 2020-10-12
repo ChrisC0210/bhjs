@@ -72,5 +72,5 @@ function array_language() {
 
 function getDefalutlanguage() {
     return "zh";
-} ?
->
+} 
+?>
