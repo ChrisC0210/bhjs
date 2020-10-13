@@ -163,6 +163,9 @@
     <script type="text/javascript " src="./dist/js/jquery.cookie.js"></script>
     <script language="javascript" type="text/javascript">
         function setCookie() { //設定cookie
+            //
+            var language = $("#languages").val();
+            //
             var loginCode = $("#login_code").val(); //獲取使用者名稱資訊
             var pwd = $("#login_password").val(); //獲取登陸密碼資訊
             var checked = $("[name='checkbox']:checked"); //獲取“是否記住密碼”複選框
@@ -176,6 +179,9 @@
         }
 
         function getCookie() { //獲取cookie
+            //
+            var language = $.cookie("#languages");
+            //
             var loginCode = $.cookie("login_code"); //獲取cookie中的使用者名稱
             var pwd = $.cookie("pwd"); //獲取cookie中的登陸密碼
             if (pwd) { //密碼存在的話把“記住使用者名稱和密碼”複選框勾選住
