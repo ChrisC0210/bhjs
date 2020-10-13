@@ -1,125 +1,3 @@
-<?php
-// include "function.php";
-function getVailableLanguage() {
-    $language = array(
-        'af' => 'Afrikaans',
-        'az' => 'Azerbaijani',
-        'eu' => 'Basque',
-        'be' => 'Belarusian',
-        'be-lat' => 'Belarusian latin',
-        'bg' => 'Bulgarian',
-        'bs' => 'Bosnian',
-        'ca' => 'Catalan',
-        'zh' => 'Chinese',
-        //'zh-TW'     => 'Chinese traditional',
-        //'zh-CN'     => 'Chinese simplified',
-        'cs' => 'Czech',
-        'da' => 'Danish',
-        'de' => 'German',
-        'el' => 'Greek',
-        'en' => 'English',
-        'es' => 'Spanish',
-        'et' => 'Estonian',
-        'fa' => 'Persian',
-        'fi' => 'Finnish',
-        'fr' => 'French',
-        'gl' => 'Galician',
-        'he' => 'Hebrew',
-        'hi' => 'Hindi',
-        'hr' => 'Croatian',
-        'hu' => 'Hungarian',
-        'id' => 'Indonesian',
-        'it' => 'Italian',
-        'ja' => 'Japanese',
-        'ko' => 'Korean',
-        'ka' => 'Georgian',
-        'lt' => 'Lithuanian',
-        'lv' => 'Latvian',
-        'mk' => 'Macedonian',
-        'mn' => 'Mongolian',
-        'ms' => 'Malay',
-        'nl' => 'Dutch',
-        'no' => 'Norwegian',
-        'pl' => 'Polish',
-        'pt-BR' => 'Brazilian portuguese',
-        'pt' => 'Portuguese',
-        'ro' => 'Romanian',
-        'ru' => 'Russian',
-        'si' => 'Sinhala',
-        'sk' => 'Slovak',
-        'sl' => 'Slovenian',
-        'sq' => 'Albanian',
-        'sr-lat' => 'Serbian latin',
-        'sr' => 'Serbian',
-        'sv' => 'Swedish',
-        'th' => 'Thai',
-        'tr' => 'Turkish',
-        'tt' => 'Tatarish',
-        'uk' => 'Ukrainian',
-    );
-    return $language;
-}
-
-function getLanguageName($language) {
-    $languages = getVailableLanguage();
-    return $languages[$language];
-}
-
-function array_language() {
-    $array_language = array("en", "zh");
-    return $array_language;
-}
-
-function getDefalutlanguage() {
-    return "zh";
-} 
-
-?>
-<!-- <script src="js/language.js"></script> -->
-<script>
-  function changeLanguage(obj) {
-    var url = document.URL;
-    var re = re = /[?&]language=[^&]*/;
-    url = url.replace(re, "");
-    if (url.indexOf("?") > -1) {
-        url += "&language=" + obj.value;
-    } else {
-        url += "?language=" + obj.value;
-    }
-    location.href = url;
-}
-</script>
-<?php
-if(isset($_GET["language"])){
-  $_SESSION["language"] = $_GET["language"];
-}else{
-  $_SESSION["language"] = getDefalutlanguage();
-}
-$language_name = getLanguageName($_SESSION["language"]);
-include "include/lang/".$language_name.".inc";
-?>
-<SELECT NAME="language" id="language" onchange="changeLanguage(this)">
-<?php
-  $language_array = array_language();
-  foreach($language_array as $key => $value){
-    if($_SESSION["language"] == $value){
-      $selected = "selected = 'selected' ";
-    }else{
-      $selected = "";
-    }
-?>
-<OPTION VALUE="<?php echo $value;?>" <?php echo $selected;?>><?php echo getLanguageName($value);?></OPTION>;
-<?
-  }
-?>
-</SELECT>
-<?php
-  if($_GET["language"] == $value){
-      $selected = "selected = 'selected' ";
-    }
-echo "Language：".$_SESSION["language"];
-//echo "测试：".$name;
-?>
 <? 
 	session_start();
 	include "include/config.php";
@@ -145,6 +23,7 @@ echo "Language：".$_SESSION["language"];
 		$data[$k] = htmlspecialchars($v);
 	}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -303,6 +182,12 @@ Venue:  Regal Hongkong Hotel
 		</div>
 		<? }else{?>
 		<div class="container bhjs-bg" id="language-change">
+						      <div class="row btn-language">
+            <div class="col-sm-10 ml-4 mt-2 mb-2" style="margin-left: 34px;margin-bottom: 20px;">
+							<?php include "include/lang.php"; ?>
+            </div>
+        </div>
+<!-- index -->
 			<!-- <div class="row btn-language">
 				<div class="col-sm-10 ml-4 mt-2 mb-2">
 					<button id="L1" class="ml-4 btn btn-primary" data-toggle="collapse" style="margin-left: 34px;margin-bottom: 20px;" >Change Language</button> &nbsp;
@@ -364,14 +249,16 @@ Venue:  Regal Hongkong Hotel
 												<div class="col-sm-1">
 													<input type="radio" style="margin-right:5px" name="timeslot_id" value="1" <?=$data['timeslot_id']==1?'checked="checked"':''?>>
 												</div>
-												12<sup>th</sup> December 2020 (Saturday) 2:00 p.m. – 3:15 p.m. 
+												<?php echo $formTime01 ?>
+												<!-- 12<sup>th</sup> December 2020 (Saturday) 2:00 p.m. – 3:15 p.m.  -->
 											</div>
 											
 											<div class="row">
 												<div class="col-sm-1">
 													<input type="radio" style="margin-right:5px" name="timeslot_id" value="2" <?=$data['timeslot_id']==2?'checked="checked"':''?>>
 												</div>
-												12<sup>th</sup> December 2020 (Saturday) 4:00 p.m. – 5:15 p.m.
+												<?php echo $formTime02 ?>
+												<!-- 12<sup>th</sup> December 2020 (Saturday) 4:00 p.m. – 5:15 p.m. -->
 											</div>											
 											
 										</div>
@@ -432,15 +319,15 @@ Venue:  Regal Hongkong Hotel
 								
 							</form>
 						</div>
-					</div>
-					<!-- eee -->
-					<div class="row">
+											<div class="row text-center">
 					<div class="col-sm-12">
-						<p style="padding-bottom: 50px" id="textPlease2">
+						<p style="padding-bottom: 50px;" id="textPlease2">
 						<?php echo $textPlease2 ?>
 						<br/>
 					</p>
 				</div>
+					</div>
+					<!-- eee -->
 			</div>
 			<!-- 22 -->
 		</div>

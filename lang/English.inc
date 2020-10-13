@@ -6,6 +6,7 @@ $tAndC = "Terms & Conditions";
 $btnNext = "Next";
 $btnBack = "Back";
 $btnPreview = "Preview";
+$btnSubmit = "Submit";
 
 $ind01 = "2020 School Information Day";
 $ind02 = "2th December 2020";
@@ -29,8 +30,16 @@ $form10 = "PRIMARY SCHOOL ATTENDING";
 $form11 = "Neighbours";
 $form12 = "Other";
 $form13 = "CONTACT NUMBER";
+$formTime01 = "12th December 2020 (Saturday) 2:00 p.m. – 3:15 p.m. ";
+$formTime02 = "12th December 2020 (Saturday) 4:00 p.m. – 5:15 p.m. ";
 $textPlease2 ="Please ensure the information above is correct before submission. Duplicate registration will not be accepted. A confirmation message will be sent to you via SMS after the completion of registration. Please show the confirmation upon entry to the School Hall. Thank you.";
+//thank
+$thank = "Reference No.: $ref
+								Your registration is successful. Thank you!
+								Please record the reference number.
+								A confirmation email was sent to you.
+								Please show the confirmation upon entry to the School Hall.
+								School Information Day";
 
-
-$thkInfo = ""
+//$thkInfo = ""
 ?>

@@ -1,43 +1,8 @@
- <?php
-include "function.php";
-?>
-<script src="js/language.js"></script>
-<?php
-if(isset($_GET["language"])){
-  $_SESSION["language"] = $_GET["language"];
-}else{
-  $_SESSION["language"] = getDefalutlanguage();
-}
-$language_name = getLanguageName($_SESSION["language"]);
-include "lang/".$language_name.".inc";
-?>
-<SELECT NAME="language" id="language" onchange="changeLanguage(this)">
-<?php
-  $language_array = array_language();
-  foreach($language_array as $key => $value){
-    if($_SESSION["language"] == $value){
-      $selected = "selected = 'selected' ";
-    }else{
-      $selected = "";
-    }
-?>
-<OPTION VALUE="<?php echo $value;?>" <?php echo $selected;?>><?php echo getLanguageName($value);?></OPTION>;
-<?
-  }
-?>
-</SELECT>
-<?php
-  if($_GET["language"] == $value){
-      //$selected = "selected = 'selected' ";
-    }
-echo "语言：".$_SESSION["language"];
-echo "测试：".$name;
-?>
-
 <? 
 	session_start();
 	include "include/config.php";
 	include "include/system_message.php";
+
 	$msg = "";
 	$err_msg = "";
 	if(isset($_REQUEST['msg'])){
@@ -50,7 +15,8 @@ echo "测试：".$name;
 	$ref = htmlspecialchars($_REQUEST['ref']);
 	$p = htmlspecialchars($_REQUEST['p']);
 	$d = htmlspecialchars($_REQUEST['d']);
-	
+
+
 	$is_free = false;
 	
 	foreach($_SESSION['sess_delegate'] as $value){
@@ -84,6 +50,74 @@ echo "测试：".$name;
     <![endif]-->
 	<script src="js/jquery-1.11.0.min.js"></script>
 	<script src="js/common.js"></script>
+		<script>
+		function disableOther(){
+			if($("input[name=student_p_school_choice]:checked").val()=='Other'){
+				$("#other_text").prop('disabled', false);
+			}else{
+				$("#other_text").prop('disabled', true);
+			}
+		}
+		function checkform(){
+			var flag=true;
+			var errMessage="";
+			var frm = document.form1;
+			
+			trimForm(frm);
+
+
+			if(frm.student_name.value==''){
+				flag = false;
+				errMessage += "Name of Student\n";
+			}
+			if(frm.parent_name.value==''){
+				flag = false;
+				errMessage += "Name of Parent\n";
+			}
+			
+			if(frm.parent_email.value==''){
+				flag = false;
+				errMessage += "Contact Email\n";
+			}else if(frm.parent_email.value!=frm.confirm_email.value){
+				flag = false;
+				errMessage += "Contact Email doesn't match\n";
+			}
+			if(frm.contact_no.value==''){
+				flag = false;
+				errMessage += "Contact Number\n";
+			}
+			
+			if($("input[name^=timeslot_id]:checked").size() == 0){
+				flag = false;
+				errMessage += "Session Attending\n";
+			}
+			
+			if($("input[name^=student_p_school_choice]:checked").size() == 0){
+				flag = false;
+				errMessage += "Primary School Attending\n";
+			}
+			
+			if($("input[name^=student_p_school_choice]:checked").val()=='Other'){
+				if(frm.other_text.value==''){
+					flag = false;
+					errMessage += "Primary School Attending - Other\n";
+				}
+			}
+			if(flag == false){
+				errMessage = "Please fill in the following information:\n" + errMessage;
+				alert(errMessage);
+		
+			}
+			return flag;
+				
+		}
+		$(document).ready(function(){
+			disableOther();
+			$("input[name=student_p_school_choice]").click(function(){
+				disableOther();
+			});
+		});
+	</script>
 	<script>
 		function checkSubmit(){
 			<?
@@ -166,18 +200,33 @@ echo "测试：".$name;
 		}
 	</script>
 	<style>
-
+    .bhjs-bg {
+        background-image: url("/images/school background.jpg");
+        padding: 20px 0 20px 0;
+    }
 	</style>
   </head>
   <body>
-	<div class="container">
-		<div class="row" style="margin-bottom: 17px;">
-			<div class="col-sm-12">
-				<a href="index.php"><img src="images/logo-header.png" class="img-responsive" alt=""></a>
-				
-			</div>
+		<div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+							<a href="index.php"><img src="images/logo-header.png" class="img-responsive" alt=""></a>
+            </div>
+        </div>
 		</div>
-		
+
+	<div class="container bhjs-bg" id="language-change">
+			      <div class="row btn-language">
+            <div class="col-sm-10 ml-4 mt-2 mb-2" style="margin-left: 34px;margin-bottom: 20px;">
+							<?php include "include/lang.php"; ?>
+            </div>
+        </div>
+<!-- index -->
+	        <!-- <div class="row btn-language">
+            <div class="col-sm-10 ml-4 mt-2 mb-2">
+                <button id="L1" class="ml-4 btn btn-primary" data-toggle="collapse" style="margin-left: 34px;margin-bottom: 20px;" >Change Language</button> &nbsp;
+            </div>
+        </div> -->
 		
 		<? /*
 		<div class="row">
@@ -189,125 +238,124 @@ Venue:  Regal Hongkong Hotel
 		</div>
 		*/?>
 		<?
+
 		if($ref!=''){?>
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Thank you</div>
+					<div class="panel-heading"><?=nl2br( ' '.$thankU .' ' )?></div>
 					<div class="panel-body">
 						
-						<div class="row">
-							<div class="col-sm-offset-1 col-sm-10">
-							<?=nl2br('Reference No.:'.$ref.'
-
-
-Your registration is successful. Thank you!
-
-Please record the reference number.
-
-A confirmation email was sent to you.
-Please show the confirmation upon entry to the School Hall.
-
-School Information Day
-
-
-參考編號：'.$ref.'
-
-
-閣下已成功登記。感謝  閣下願意撥冗出席。
-
-請記下參考編號。
-
-我們將傳送一封電郵確認  閣下的登記。
-屆時請出示確認電郵以便安排入座。
-
-2019年學校資訊日
-
-')?>
+					
+						<div class="row" id="engText">
+							<div class="show col-sm-offset-1 col-sm-10">
+								<?=nl2br( ' '.$thank.' ' )?>
 							</div>
 						</div>
-						
+						<!-- 123 -->
+												<!-- <div class="row" id="znText">
+							<div class="col-sm-offset-1 col-sm-10">
+							<
+								?=nl2br(
+								'
+								
+								參考編號：'.$ref.'
+								閣下已成功登記第___節學校資訊日簡介會，並留座 '.$no_of_seats.' 位。
+								屆時請出示本信息以便安排入座。
+								何明華會督銀禧中學謹啟
+								')?>
+							</div>
+						</div> -->
+						<!-- 123 -->
 					</div>
 				</div>
 			</div>
 		
 		</div>
-		<? }else{?>
-		<div class="row">
-                <div class="col-sm-12">
-                    <div class="panel panel-default">
-                        <h3 class="text-center"><b>2020 School Information Day
-				</b>
-				</h3>
-                        <div class="panel-body" style="text-align:justify;">
-							<div>
-                            <?=nl2br("
-12th December 2020
-							
-Our School Information Day will be held on 12th December 2020 (Saturday). We will conduct two briefing sessions about our school for senior primary students and their parents. Each briefing session will include a general introduction of the school, our curriculum, activities for students as well as admission criteria. Visitors are also welcomed to tour the school during school opening hours.
-
-Briefing Sessions
-1st Session: 2:00 p.m. – 3:15 p.m.
-2nd Session: 4:00 p.m. – 5:15 p.m.
-(Contents of the two sessions are identical.)
-
-For details, please contact us at 2336 3034.
-
-<hr>
-
-
-")?>
-					</div>
-					<div>
-                        <h3 class="text-center"><b>2020年學校資訊日	</b></h3>
-                            <?=nl2br("
-2020年12月12日
-						
-本校將於2020年12月12日(星期六)舉行學校資訊日。屆時我們將為小學高年級的學生及其家長舉辦兩場簡介會，讓來賓對本校的課程、學生活動及收生標準有更深入的認識。本校亦會開放校園設施供來賓參觀。
-
-<u>簡介會</u>
-第一節：下午二時至三時十五分
-第二節：下午四時至五時十五分
-(兩節簡介會內容相同)
-
-如有查詢，請致電2336 3034與本校聯絡。
-
-
-
-
-")?>
-
-						
-					</div>
-
-<div class="row text-center">
-										<button type="button" class="btn btn-default" style="margin-top: 20px;" onclick="window.location='form.php'">Next</button>
-									</div>
-									
-									
-                        </div>
-						<div class="row">
-							<div class="col-sm-12">
-			<p style="padding-bottom: 50px">
-				Terms & Conditions:<br/>
-				
-			</p>
-			</div>
-		</div>
-
-                    </div>
-                </div>
-            </div>
 		
+		<? }
+		
+		else{
+      
+      ?>
+      <!-- 222 -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+									<!-- form 1 -->
+                    <div class="panel-body" style="text-align:justify;">
+                        <!-- english -->
+                        <div id="engText" class="show collapse card-body bg-light" data-toggle="collapse" data-parent="#accordion">
+                            <h3 class="text-center"><b><?=nl2br( ' '.$ind01.' ' )?></b></h3>
+                            <h4><?=nl2br( ' '.$ind02.' ' )?></h4>
+                            <div class="mt-2 mb-4">
+                              <?=nl2br( ' '.$ind03.' ' )?>
+                            </div>
+                            <h4 style="margin-top:40px;"><?=nl2br( ' '.$ind04.' ' )?></h4>
+                            <h5 class="mt-2 mb-4"><?=nl2br( ' '.$ind05.' ' )?></h5>
+                            <h5 class="mt-2 mb-4"><?=nl2br( ' '.$ind06.' ' )?></h5>
+                            <div class="mt-2 mb-4"><?=nl2br( ' '.$ind07.' ' )?></div>
+                            <div class="mt4 mb-4" style="margin-top:40px;"><?=nl2br( ' '.$ind08.' ' )?></div>
+                            <!-- <hr> -->
+                        </div>
+                        <!-- english -->
+
+                        <!-- btn -->
+                        <div class="row text-center ">
+													<!-- <button type="button " class="btn btn-default " style="margin-top: 20px; " id="btnNext" >?php echo $btnNext ?> -->
+													<button type="button " class="btn btn-default " style="margin-top: 20px; " id="btnNext" onclick="window.location='form.php' "><?php echo $btnNext ?>
+													</button>
+													
+													<!-- <a href="form.php"><?php $language = "en"; ?></a> -->
+                        </div>
+
+										</div>
+									
+										<div class="ml-4" style="padding-bottom: 50px;padding-left: 24px; "><?php echo $tAndC ?><br /></div>
+										<!-- form 1 -->
+										
+                </div>
+
+            </div>
+        </div>
+			<!-- 123 -->
+			
+			<!-- 123 -->
 		<?
 		}?>
 		
 	
 		<hr noshade="noshade" style="border:20px solid #fedfb0; display:none;">
 	</div>
+	
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery-1.11.0.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+    <script>
+        // var languageClickL0 = document.getElementById('L0');
+        // var languageClickL1 = document.getElementById('L1');
+
+        // languageClickL1.onclick = function() {
+        //     var znText = document.getElementById('znText');
+        //     if (znText.style.display !== 'block') {
+        //         document.getElementById("engText").style.display = "none";
+        //         document.getElementById("znText").style.display = "block";
+        //         document.getElementById("engText").classList.remove("show");
+        //     } else {
+        //         znText.style.display = 'none';
+        //         document.getElementById("engText").style.display = "block";
+        //         document.getElementById("znText").style.display = "none";
+        //     }
+        // };
+		</script>
+		<script>
+function locations(){
+    //var id=20; get the value of id and save in id(getElementById or jquery) 
+window.location.href='/form.php?language='+value;
+}
+</script>
+		</script>
   </body>
 </html>

@@ -66,15 +66,12 @@
 		</div>
 		
 		<div class="container bhjs-bg" id="language-change">
-	        <div class="row btn-language">
-            <div class="col-sm-10 ml-4 mt-2 mb-2">
-                <!-- <span class="btn" href="#english" data-parent="#language-change" data-toggle="collapse">English</span>
-                <span class="btn" href="#chinese" data-parent="#language-change" data-toggle="collapse">Chinese</span> -->
-                <!-- <button id="L0" class="btn" data-toggle="collapse">English</button>&nbsp; -->
-                <button id="L1" class="ml-4 btn btn-primary" data-toggle="collapse" style="margin-left: 34px;margin-bottom: 20px;" >Change Language</button> &nbsp;
-
+						      <div class="row btn-language">
+            <div class="col-sm-10 ml-4 mt-2 mb-2" style="margin-left: 34px;margin-bottom: 20px;">
+							<?php include "include/lang.php"; ?>
             </div>
         </div>
+<!-- index -->
 
 
 
@@ -82,7 +79,7 @@
 		<div class="row">
                 <div class="col-sm-12">
                     <div class="panel panel-default">
-                        <h3 class="text-center"><b id="schoolInfo">School Information Day 2019 Registration
+                        <h3 class="text-center"><b id="schoolInfo"><?php echo $form01 ?>
 				</b>
 				</h3>
                         <div class="panel-body" >
@@ -99,7 +96,7 @@
 
 									<div class="row">
 										<div class="col-sm-4" id="studentName">
-											Name of Student
+											<?php echo $form03 ?>
 										</div>
 										<div class="col-sm-6">
 											 <?=$data['student_name']?>
@@ -107,7 +104,7 @@
 									</div>
 									<div class="row">
 										<div class="col-sm-4"  id="parentName">
-											Name of Parent
+											<?php echo $form05 ?>
 										</div>
 										<div class="col-sm-2">
 											
@@ -119,7 +116,7 @@
 									</div>
 									<div class="row">
 										<div class="col-sm-4" id="contactEmail">
-											Contact Email
+											<?php echo $form06 ?>
 										</div>
 										<div class="col-sm-6">
 											 
@@ -129,7 +126,7 @@
 									
 									<div class="row">
 										<div class="col-sm-4" id="contactNumber">
-											Contact Number
+											<?php echo $form13 ?>
 										</div>
 										<div class="col-sm-6">
 											 <?=$data['contact_no']?>
@@ -138,7 +135,7 @@
 									
 									<div class="row" style="padding-top:5px;">
 										<div class="col-sm-4" id="sessionAttending">
-											Session Attending
+											<?php echo $form08 ?>
 										</div>
 										<div class="col-sm-8">
 											
@@ -166,7 +163,7 @@
 								
 									<div class="row">
 										<div class="col-sm-4" id="noSeats">
-											No. of Seats Reserved
+											<?php echo $form09 ?>
 										</div>
 										<div class="col-sm-2">
 											<?=$data['no_of_seats']?>
@@ -175,7 +172,7 @@
 									</div>
 									<div class="row" style="padding-top:5px;">
 										<div class="col-sm-4" id="primarySchool">
-											Primary School Attending
+											<?php echo $form10 ?>
 										</div>
 										<div class="col-sm-8">
 											
@@ -194,8 +191,8 @@
 									
 									
 									<div class="row text-center">
-										<button type="button" class="btn btn-default" style="margin-top: 20px;" onClick="window.location='form.php';" id="btn-back">Back</button>
-										<button type="submit" class="btn btn-default" style="margin-top: 20px;" id="btn-submit">Submit</button>
+										<button type="button" class="btn btn-default" style="margin-top: 20px;" onClick="window.location='form.php';" id="btn-back"><?php echo $btnBack ?></button>
+										<button type="submit" class="btn btn-default" style="margin-top: 20px;" id="btn-submit"><?php echo $btnSubmit ?></button>
 									</div>
 								
 								</div>
@@ -234,6 +231,8 @@
     <script src="js/jquery-1.11.0.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+
 		<script>
         var languageClickL0 = document.getElementById('L0');
         var languageClickL1 = document.getElementById('L1');
