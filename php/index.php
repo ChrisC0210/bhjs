@@ -218,7 +218,7 @@
 	<div class="container bhjs-bg" id="language-change">
 			      <div class="row btn-language">
             <div class="col-sm-10 ml-4 mt-2 mb-2" style="margin-left: 34px;margin-bottom: 20px;">
-							<?php include "include/lang.php"; ?>
+							<?php include "include/lang.php" ?>
             </div>
         </div>
 <!-- index -->
@@ -241,6 +241,10 @@ Venue:  Regal Hongkong Hotel
 
 		if($ref!=''){?>
 		<div class="row">
+				<?php 
+	$language_name = getLanguageName($_SESSION["language"]);
+include "include/lang/".$language_name.".inc";
+	?>
 			<div class="col-sm-12">
 				<div class="panel panel-default">
 					<div class="panel-heading"><?=nl2br( ' '.$thankU .' ' )?></div>
@@ -291,7 +295,7 @@ Venue:  Regal Hongkong Hotel
                             <div class="mt-2 mb-4">
                               <?=nl2br( ' '.$ind03.' ' )?>
                             </div>
-                            <h4 style="margin-top:40px;"><?=nl2br( ' '.$ind04.' ' )?></h4>
+                            <h4 ><?=nl2br( ' '.$ind04.' ' )?></h4>
                             <h5 class="mt-2 mb-4"><?=nl2br( ' '.$ind05.' ' )?></h5>
                             <h5 class="mt-2 mb-4"><?=nl2br( ' '.$ind06.' ' )?></h5>
                             <div class="mt-2 mb-4"><?=nl2br( ' '.$ind07.' ' )?></div>
@@ -327,7 +331,7 @@ Venue:  Regal Hongkong Hotel
 	
 		<hr noshade="noshade" style="border:20px solid #fedfb0; display:none;">
 	</div>
-	
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery-1.11.0.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

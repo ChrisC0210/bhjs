@@ -24,17 +24,13 @@ function array_language() {
 $languages = array('en', 'zh');
 if(isset($_GET['language']) AND in_array($_GET['language'], $languages)){
     $_SESSION['language'] = $_GET['language'];
-    $_COOKIE["language"] == $selected;
+    //$_COOKIE["language"] == $selected;
 }
 else{  
     $_SESSION['language'] = "zh";    
 }
 //
 
-function getDefalutlanguage() {
-    return "zh";
-    //$_COOKIE["language"] == $selected;
-} 
 
 ?>
 <!-- <script src="js/language.js"></script> -->
@@ -51,6 +47,52 @@ function getDefalutlanguage() {
 		location.href = url;
 }
 </script>
+<?php
+function getDefalutlanguage() {
+    //return "zh";
+    //$_COOKIE["language"] == $selected;
+if(isset($_GET['language']) AND in_array($_GET['language'], $languages)){
+    $_SESSION['language'] = $_GET['language'];
+    //$_COOKIE["language"] == $selected;
+} else {
+      //return "zh";
+      //$language_name = getLanguageName($_SESSION["language"]);
+      //include "include/lang/".$language_name.".inc";
+      //include "include/lang/Chinese.inc";
+      $_SESSION['language'] = 'zh';
+    }
+} 
+
+if(isset($_GET["language"])){
+  $_SESSION["language"] = $_GET["language"];
+  $_SESSION["language"] = $_COOKIE["language"];
+  $language_name = getLanguageName($_SESSION["language"]);
+include "include/lang/Chinese.inc";
+include "include/lang/English.inc";
+include "include/lang/".$language_name.".inc";
+  
+}else{
+  $_SESSION["language"] = getDefalutlanguage();
+  $_SESSION["language"] = $_COOKIE["language"];
+  //$_SESSION['language'] = "zh";  
+  $language_name = getLanguageName($_SESSION["language"]);
+include "include/lang/Chinese.inc";
+include "include/lang/English.inc";
+}
+    //include "include/lang/".$language_name.".inc";
+
+//
+//$language_name = getLanguageName($_SESSION["language"]);
+//include "include/lang/Chinese.inc";
+//include "include/lang/English.inc";
+//include "include/lang/".$language_name.".inc";
+
+//
+
+
+//
+//require_once("include/lang/".$language_name.".inc");
+?>
     <script>
         $(function() {
             //Read the cookie, if it has been previously set
@@ -73,9 +115,10 @@ function getDefalutlanguage() {
                     }
                     location.href = url;
                     //
-                    $('#btnNext').click(function() {
-                      window.location.href='http://bhjs.vela.hk/form.php?language=en';
-});
+                    // $('#btnNext').click(function() {
+                    //   window.location.href='http://bhjs.vela.hk/form.php?language=en';
+                    // });
+                    
                 })
                 //Set cookie to default language when page loads;
                 .change();
@@ -84,20 +127,7 @@ function getDefalutlanguage() {
             //alert(language);
         });
     </script>
-<?php
-if(isset($_GET["language"])){
-  //$_SESSION["language"] = $_GET["language"];
-  $_SESSION["language"] = $_COOKIE["language"];
-  
-}else{
-  //$_SESSION["language"] = getDefalutlanguage();
-  $_SESSION["language"] = $_COOKIE["language"];
-}
-$language_name = getLanguageName($_SESSION["language"]);
-include "include/lang/".$language_name.".inc";
-//
-require_once("include/lang/".$language_name.".inc");
-?>
+
 <!-- <form action="include/language_switcher.php" method="post"> -->
 <select id="language" onchange="changeLanguage(this)">
   <option value="en">English</option>
@@ -125,7 +155,6 @@ require_once("include/lang/".$language_name.".inc");
     }
 echo "Language：".$_SESSION["language"];
 // echo "La：".$_COOKIE["language"];
-//echo "测试：".$name;
 //
 // if( isset($_COOKIE['language']) && !empty($_COOKIE['language']) ){
 //     header(".php?language=".$_COOKIE['language'] );
@@ -136,7 +165,4 @@ echo "Language：".$_SESSION["language"];
 // }
 //
 ?>
- <!-- <p class="color:#fff;">Language: ?php if( isset( $_COOKIE["language"] ) ) { echo $_COOKIE["language"]; } else { echo "<em>not set</em>"; } ?></p> -->
-<?php
-//$btnNext 
-?>
+<!-- <p class="color:#fff;">Language: ?php if( isset( $_COOKIE["language"] ) ) { echo $_COOKIE["language"]; } else { echo "<em>not set</em>"; } ?></p> -->

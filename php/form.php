@@ -195,6 +195,10 @@ Venue:  Regal Hongkong Hotel
         </div> -->
 <!-- eng -->
 		<div class="row">
+					<?php 
+	$language_name = getLanguageName($_SESSION["language"]);
+include "include/lang/".$language_name.".inc";
+	?>
 			<!-- 22 -->
 			<div id="engText" class="show collapse">
 			<div class="col-sm-12">
@@ -342,6 +346,7 @@ Venue:  Regal Hongkong Hotel
 	
 		<hr noshade="noshade" style="border:20px solid #fedfb0; display:none;">
 	</div>
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery-1.11.0.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

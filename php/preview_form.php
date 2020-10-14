@@ -77,6 +77,10 @@
 
 		
 		<div class="row">
+							<?php 
+	$language_name = getLanguageName($_SESSION["language"]);
+include "include/lang/".$language_name.".inc";
+	?>
                 <div class="col-sm-12">
                     <div class="panel panel-default">
                         <h3 class="text-center"><b id="schoolInfo"><?php echo $form01 ?>
