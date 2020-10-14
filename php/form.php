@@ -325,7 +325,7 @@ include "include/lang/".$language_name.".inc";
 						</div>
 											<div class="row text-center">
 					<div class="col-sm-12">
-						<p style="padding-bottom: 50px;" id="textPlease2">
+						<p style="font-size:16px; line-height:24px; color:#ce153f; padding-bottom: 50px;" id="textPlease2">
 						<?php echo $textPlease2 ?>
 						<br/>
 					</p>
