@@ -195,10 +195,6 @@ Venue:  Regal Hongkong Hotel
         </div> -->
 <!-- eng -->
 		<div class="row">
-					<?php 
-	$language_name = getLanguageName($_SESSION["language"]);
-include "include/lang/".$language_name.".inc";
-	?>
 			<!-- 22 -->
 			<div id="engText" class="show collapse">
 			<div class="col-sm-12">
@@ -312,7 +308,7 @@ include "include/lang/".$language_name.".inc";
 										</div>
 									</div>									
 									<div class="row text-center">
-										<button type="button" class="btn btn-default" style="margin-top: 20px;" onClick="window.location='index.php';" id="btn-back"><?php echo $btnBack ?></button>
+										<button type="button" class="btn btn-default" style="margin-top: 20px;"  onclick="window.location='index.php' ;" id="btn-back"><?php echo $btnBack ?></button>
 										<button type="submit" class="btn btn-default" style="margin-top: 20px;" id="btnPreview"><?php echo $btnPreview ?></button>
 									</div>
 	
@@ -346,7 +342,6 @@ include "include/lang/".$language_name.".inc";
 	
 		<hr noshade="noshade" style="border:20px solid #fedfb0; display:none;">
 	</div>
-
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery-1.11.0.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

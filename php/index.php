@@ -241,10 +241,6 @@ Venue:  Regal Hongkong Hotel
 
 		if($ref!=''){?>
 		<div class="row">
-				<?php 
-	$language_name = getLanguageName($_SESSION["language"]);
-include "include/lang/".$language_name.".inc";
-	?>
 			<div class="col-sm-12">
 				<div class="panel panel-default">
 					<div class="panel-heading"><?=nl2br( ' '.$thankU .' ' )?></div>
@@ -310,7 +306,7 @@ include "include/lang/".$language_name.".inc";
 													<button type="button " class="btn btn-default " style="margin-top: 20px; " id="btnNext" onclick="window.location='form.php' "><?php echo $btnNext ?>
 													</button>
 													
-													<!-- <a href="form.php"><?php $language = "en"; ?></a> -->
+													<!-- <a href="form.php">< ?php $language = "en"; ?></a> -->
                         </div>
 
 										</div>
@@ -331,7 +327,6 @@ include "include/lang/".$language_name.".inc";
 	
 		<hr noshade="noshade" style="border:20px solid #fedfb0; display:none;">
 	</div>
-
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery-1.11.0.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

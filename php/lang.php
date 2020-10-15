@@ -48,19 +48,20 @@ else{
 }
 </script>
 <?php
+  $language_name = getLanguageName($_SESSION["language"]);
 function getDefalutlanguage() {
     //return "zh";
     //$_COOKIE["language"] == $selected;
-if(isset($_GET['language']) AND in_array($_GET['language'], $languages)){
-    $_SESSION['language'] = $_GET['language'];
-    //$_COOKIE["language"] == $selected;
-} else {
-      //return "zh";
-      //$language_name = getLanguageName($_SESSION["language"]);
-      //include "include/lang/".$language_name.".inc";
-      //include "include/lang/Chinese.inc";
-      $_SESSION['language'] = 'zh';
-    }
+// if(isset($_GET['language']) AND in_array($_GET['language'], $languages)){
+//     $_SESSION['language'] = $_GET['language'];
+//     //$_COOKIE["language"] == $selected;
+// } else {
+//       //return "zh";
+//       //$language_name = getLanguageName($_SESSION["language"]);
+//       //include "include/lang/".$language_name.".inc";
+//       //include "include/lang/Chinese.inc";
+//       $_SESSION['language'] = 'zh';
+//     }
 } 
 
 if(isset($_GET["language"])){
@@ -82,6 +83,9 @@ include "include/lang/English.inc";
     //include "include/lang/".$language_name.".inc";
 
 //
+if( $language_name = getLanguageName($_SESSION["language"]) ) {
+  include "include/lang/".$language_name.".inc";
+}
 //$language_name = getLanguageName($_SESSION["language"]);
 //include "include/lang/Chinese.inc";
 //include "include/lang/English.inc";
@@ -130,8 +134,8 @@ include "include/lang/English.inc";
 
 <!-- <form action="include/language_switcher.php" method="post"> -->
 <select id="language" onchange="changeLanguage(this)">
-  <option value="en">English</option>
-  <option value="zh" selected = "selected">Chinese</option>
+  <option value="en" selected = "selected">English</option>
+  <option value="zh" >Chinese</option>
 </select>
 <!-- </form> -->
 <!--  -->
